@@ -1,3 +1,5 @@
+import static java.lang.System.out;
+
 /**
  * Author: 王俊超
  * Date: 2015-04-21
@@ -98,9 +100,19 @@ public class Test02 {
 
     /**
      * 静态内部类，使用枚举方式，线程安全【推荐】
+     *
+     * 枚举中的每个枚举变量都调用了一次构造方法
      */
     public enum Singleton6 {
-        INSTANCE;
+        INSTANCE,
+        INSTANCE1(1);
+
+        Singleton6() {
+            out.println("Singleton6");
+        }
+        Singleton6(int a) {
+            out.println("Singleton6666");
+        }
 
         public void whateverMethod() {
 
@@ -131,13 +143,13 @@ public class Test02 {
     }
 
     public static void main(String[] args) {
-        System.out.println(Singleton.getInstance() == Singleton.getInstance());
-        System.out.println(Singleton2.getInstance() == Singleton2.getInstance());
-        System.out.println(Singleton3.getInstance() == Singleton3.getInstance());
-        System.out.println(Singleton4.getInstance() == Singleton4.getInstance());
-        System.out.println(Singleton5.getInstance() == Singleton5.getInstance());
-        System.out.println(Singleton6.INSTANCE == Singleton6.INSTANCE);
-        System.out.println(Singleton7.getInstance() == Singleton7.getInstance());
+        out.println(Singleton.getInstance() == Singleton.getInstance());
+        out.println(Singleton2.getInstance() == Singleton2.getInstance());
+        out.println(Singleton3.getInstance() == Singleton3.getInstance());
+        out.println(Singleton4.getInstance() == Singleton4.getInstance());
+        out.println(Singleton5.getInstance() == Singleton5.getInstance());
+        out.println(Singleton6.INSTANCE1 == Singleton6.INSTANCE1);
+        out.println(Singleton7.getInstance() == Singleton7.getInstance());
     }
 
 }
