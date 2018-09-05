@@ -5,6 +5,31 @@
  * Declaration: All Rights Reserved !!!
  */
 public class Test03 {
+
+    public static boolean t(int[][] arr,int a){
+        //默认正方形
+        int l1 = arr[0].length; //长度
+        int l2 = arr.length; //高度
+        for(int i =0;i<l2;i++){
+            if(a>arr[i][l1-1]){
+            }else if(a<arr[i][l1-1]){
+                for(int j = 0;j<l1;j++){
+                    if(a==arr[i][j]) return true;
+                }
+            }else {
+                return true;
+            }
+        }
+        return false;
+    }
+
+
+
+
+
+
+
+
     /**
      * 在一个二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。
      * 请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。
@@ -18,6 +43,11 @@ public class Test03 {
      * @param number 要查找的数
      * @return 查找结果，true找到，false没有找到
      */
+
+
+
+
+
     public static boolean find(int[][] matrix, int number) {
 
         // 输入条件判断
@@ -59,5 +89,13 @@ public class Test03 {
         System.out.println(find(matrix, 0));    // 要查找的数比数组中最小的数字还小
         System.out.println(find(matrix, 16));   // 要查找的数比数组中最大的数字还大
         System.out.println(find(null, 16));     // 健壮性测试，输入空指针
+
+        System.out.println("-----------------");
+        System.out.println(t(matrix, 7));
+        System.out.println(t(matrix, 5));
+        System.out.println(t(matrix, 1));
+        System.out.println(t(matrix, 15));
+        System.out.println(t(matrix, 0));
+        System.out.println(t(matrix, 16));
     }
 }
