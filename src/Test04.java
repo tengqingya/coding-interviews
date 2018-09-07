@@ -1,3 +1,5 @@
+import static java.lang.System.out;
+
 /**
  * Author: 王俊超
  * Date: 2015-04-21
@@ -12,6 +14,67 @@ public class Test04 {
      * @param usedLength 已经字符数组中已经使用的长度
      * @return 转换后使用的字符长度，-1表示处理失败
      */
+
+    public static int t(char args[],int length){
+        int l = length*3;
+        char res[] = new char[l];
+        int j=l-1;
+        for(int i=length-1;i>=0;i--){
+            if(args[i] == ' '){
+                //是空格
+                res[j--] = '0';
+                res[j--] = '2';
+                res[j--] = '%';
+            }else {
+                res[j--] = args[i];
+            }
+        }
+        out.println(new String(res) +"-----") ;
+        return l- j;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public static int replaceBlank(char[] string, int usedLength) {
         // 判断输入是否合法
         if (string == null || string.length < usedLength) {
@@ -57,6 +120,18 @@ public class Test04 {
         return tmp;
     }
 
+
+
+
+
+
+
+
+
+
+
+
+
     public static void main(String[] args) {
         char[] string = new char[50];
         string[0] = ' ';
@@ -71,8 +146,11 @@ public class Test04 {
         string[9] = ' ';
         string[10] = 'p';
         string[11] = ' ';
-
+//%20e%20%20re%20%20a%20p%20
+//%20e%20%20re%20%20a%20p%20
         int length = replaceBlank(string, 12);
-        System.out.println(new String(string, 0, length));
+//        int t = t(string, 12);
+        out.println(new String(string, 0, length));
+//        out.println(t);
     }
 }
