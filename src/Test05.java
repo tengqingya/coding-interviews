@@ -1,5 +1,7 @@
 import java.util.Stack;
 
+import static java.lang.System.out;
+
 /**
  * Author: 王俊超
  * Date: 2015-04-21
@@ -7,6 +9,45 @@ import java.util.Stack;
  * Declaration: All Rights Reserved !!!
  */
 public class Test05 {
+        // 输入个链表的头结点，从尾到头反过来打印出每个结点的值
+        //使用栈的方式进行
+
+  public static class Node{
+      Node next;
+      int value;
+
+      /**
+       * 如果想使结果一层一层传上来，我们该怎么做？其实很简单，就是在递归调用前面加上return即可
+       * @param node
+       */
+      public static void print(Node node){
+          if(node.next == null){
+              out.println(node.value);
+          }else {
+              Node.print(node.next);
+              out.println(node.value);
+          }
+      }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * 结点对象
      */
@@ -30,7 +71,7 @@ public class Test05 {
         ListNode tmp;
         while (!stack.isEmpty()) {
             tmp = stack.pop();
-            System.out.print(tmp.val + " ");
+            out.print(tmp.val + " ");
         }
     }
 
@@ -43,9 +84,19 @@ public class Test05 {
     public static void printListInverselyUsingRecursion(ListNode root) {
         if (root != null) {
             printListInverselyUsingRecursion(root.nxt);
-            System.out.print(root.val + " ");
+            out.print(root.val + " ");
         }
     }
+
+
+
+
+
+
+
+
+
+
 
     public static void main(String[] args) {
         ListNode root = new ListNode();
@@ -60,8 +111,22 @@ public class Test05 {
         root.nxt.nxt.nxt.nxt.val = 5;
 
         printListInverselyUsingIteration(root);
-        System.out.println();
+        out.println();
         printListInverselyUsingRecursion(root);
+        out.println();
+
+        Node node = new Node();
+        node.value=1;
+        node.next=new Node();
+        node.next.value=2;
+        node.next.next = new Node();
+        node.next.next.value = 3;
+        node.next.next.next = new Node();
+        node.next.next.next.value = 4;
+        node.next.next.next.next = new Node();
+        node.next.next.next.next.value = 5;
+        Node.print(node);
+        Node.print(node);
     }
 
 }
