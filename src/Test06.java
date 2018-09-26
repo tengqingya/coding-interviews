@@ -1,3 +1,12 @@
+import com.sun.org.apache.regexp.internal.RE;
+import sun.security.util.Length;
+
+import java.awt.event.PaintEvent;
+import java.util.HashMap;
+import java.util.Map;
+
+import static java.lang.System.out;
+
 /**
  * Author: 王俊超
  * Date: 2015-04-22
@@ -5,6 +14,180 @@
  * Declaration: All Rights Reserved !!!
  */
 public class Test06 {
+
+
+
+
+
+
+
+
+    //输入某二叉树的前序遍历和中序遍历的结果，请重建出该二节树。假设输入的前序遍历和中序遍历的结果中都不含重复的数字。
+
+    public static class Node6{
+        public Node6 left;
+        public Node6 right;
+        public int value;
+    }
+
+    /**
+     * 遍历终须然后根据先序判断位置
+     * @param a 先序
+     * @param b 中序
+     * @return
+     */
+    public static Node6 fa(int[] a ,int[] b){
+        if(a.length!=b.length){
+            return null;
+        }
+        Map<Integer,Integer> map=new HashMap<>();
+        //map中存先序顺序，如果a>b则b是a的孩子,至于是做孩子还是由孩子由中序确定
+        for(int i=0;i<a.length;i++){
+            map.put(a[i],i);
+        }
+        Node6 preNode =null;
+        Node6 root =null;
+        int rootValue = a[0];
+        for(int i=0;i<b.length;i++){
+            int temB = b[i];
+            Node6 n = new Node6();
+            n.value=temB;
+            if(i==0){
+                preNode = n;
+                root = n;
+            }else {
+                int aIndex = map.get(b[i-1]); //中序的前一个节点在先序中的位置
+                int bIndex = map.get(temB);//中序当前一个节点在先序中的位置
+                if(aIndex>bIndex){
+                    //a是左孩子
+                    n.left = root;
+                    root= n;
+                }else{
+                    //a是父
+                    preNode.right = n;
+                }
+            }
+            //当遍历到右边的子树的时候走不下去了
+            preNode = n;
+//            if(n.value == rootValue)
+//                root = preNode;
+        }
+        return root;
+    }
+
+
+    public static void print(Node6 root){
+        if(root!=null){
+            out.println(root.value);
+            if(root.left!=null)print(root.left);
+            if(root.right!=null)print(root.right);
+        }
+    }
+
+    public static void printMid(Node6 root){
+        if(root!=null){
+            if(root.left!=null)printMid(root.left);
+            out.println(root.value);
+            if(root.right!=null)printMid(root.right);
+        }
+    }
+
+
+    /**
+     *
+     * @param pre 先序
+     * @param mid 中序
+     */
+    public static Node6 funa(int pre[],int mid[]){
+        return funb(pre,0,pre.length-1,mid,0,mid.length-1);
+    }
+
+    private static Node6 funb( int[] pre, int preStart, int preEnd, int[] mid, int midStart, int midEnd ) {
+        if(preStart>preEnd)return null;
+        Node6 root = new Node6();
+        root.value = pre[preStart];
+        //找到midStart在中序的位置
+        //左子树的元素个数：index-midStart+1个
+        //右字数元素个数：preEnd-index+1
+        //preStart 后面 index-midStart+1 ==》》preStart+1后面index-midStart
+        int index = find(mid,pre[preStart]);
+        root.left =  funb(pre,preStart+1,preStart+index-midStart,mid,midStart,index-1);
+        root.right =  funb(pre,preStart+index-midStart+1,preEnd,mid,index+1,midEnd);
+        return root;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /**
+     * 人民币换成葡币
+     * @param hl
+     */
+    public static void printHL( double hl){
+        out.println("人民币换成葡币");
+        for(int i =0;i<44;i++){
+            out.println(i + "--->>>" + i * hl);
+        }
+    }
+    /**
+     * 人民币换成港币
+     * @param hl
+     */
+    public static void printHL2(double hl){
+        out.println("人民币换成港币");
+        for(int i =0;i<44;i++){
+            out.println(i + "--->>>"+ i * hl);
+        }
+    }
+    /**
+     * 葡币换成人民币
+     * @param hl
+     */
+    public static void printHL3(double hl){
+        out.println("葡币换成人民币");
+        for(int i =0;i<44;i++){
+            out.println(i + "--->>>" + i * hl);
+        }
+    }
+    /**
+     * 港币换成人民币
+     * @param hl
+     */
+    public static void printHL4( double hl){
+        out.println("港币换成人民币");
+        for(int i =0;i<44;i++){
+            out.println(i + "--->>>" + i * hl);
+        }
+    }
+
+    private static int find( int[] pre, int midStart ) {
+        for(int i=0;i<pre.length;i++ ){
+            if(pre[i] == midStart)
+                return i;
+        }
+        return 0;
+    }
+
+
     /**
      * 二叉树节点类
      */
@@ -64,6 +247,9 @@ public class Test06 {
         BinaryTreeNode node = new BinaryTreeNode();
         node.value = value;
 
+//        root.left =  funb(pre,preStart+1,preStart+index-midStart+1,mid,midStart,index-1);
+//        root.right =  funb(pre,preStart+index-midStart+1,preEnd-index+1,mid,index+1,midEnd);
+
         // 递归构建当前根结点的左子树，左子树的元素个数：index-is+1个
         // 左子树对应的前序遍历的位置在[ps+1, ps+index-is]
         // 左子树对应的中序遍历的位置在[is, index-1]
@@ -81,7 +267,7 @@ public class Test06 {
     public static void printTree(BinaryTreeNode root) {
         if (root != null) {
             printTree(root.left);
-            System.out.print(root.value + " ");
+            out.print(root.value + " ");
             printTree(root.right);
         }
 
@@ -173,19 +359,28 @@ public class Test06 {
 
     public static void main(String[] args) {
 
-        test1();
-        System.out.println();
-        test2();
-        System.out.println();
-        test3();
-        System.out.println();
-        test4();
-        System.out.println();
-        test5();
-        System.out.println();
-        test6();
-        System.out.println();
-        test7();
-
+//        test1();
+//        System.out.println();
+//        test2();
+//        System.out.println();
+//        test3();
+//        System.out.println();
+//        test4();
+//        System.out.println();
+//        test5();
+//        System.out.println();
+//        test6();
+//        System.out.println();
+//        test7();
+//        printHL(1.1745);
+//        printHL2(1.1425);
+//        printHL3(0.8515);
+//        printHL4(0.8753);
+        int[] preorder = {1, 2, 4, 5, 3, 6, 7};
+        int[] inorder = {4, 2, 5, 1, 6, 3, 7};
+        Node6 funb = funb(preorder, 0, 6, inorder, 0, 6);
+        print(funb);
+        out.println("");
+        printMid(funb);
     }
 }
