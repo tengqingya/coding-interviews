@@ -1,9 +1,20 @@
+import static java.lang.System.out;
+
 /**
  * Author: 王俊超
  * Date: 2015-04-22
  * Time: 10:57
  * Declaration: All Rights Reserved !!!
  */
+
+
+
+
+
+
+
+
+
 public class Test08 {
 
     /**
@@ -14,6 +25,67 @@ public class Test08 {
      * @param numbers 旋转数组
      * @return 数组的最小值
      */
+
+
+//输入{4,5,1,2,3}输出1
+    //只要找到相邻的两个数趋势为递减就找到了最小的那个数
+    //有重复着怎么搞,{1,1,2,3,4,4,5}=>>{3,4,4,5,1,1,2}
+    //但是此种方法是o(n),不行
+    //需要使用o(ln)
+    //分割线前面的所有元素都大于后面的所有元素，是所有
+    //todo 主要是当很多元素都相等的时候，难以区分，需要增加额外的多个判断{1, 0, 1, 1, 1}
+
+    public static int fun(int[] arr){
+        if(arr.length <=0)return 0;
+        if(arr.length == 1) return arr[0];
+        int start = 0 ;
+        int end = arr.length-1;
+        int mid = 0;
+        while( arr[start] > arr[end] ){
+            if(start +1 == end){
+                return arr[end];
+            }
+            mid = (start + end) / 2;
+            if(arr[start] > arr[mid]){
+                //在左边
+                end = mid;
+            }else {
+                //在右边
+                start = mid;
+            }
+        }
+        return arr[mid];
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public static int min(int[] numbers) {
         // 判断输入是否合法
         if (numbers == null || numbers.length == 0) {
@@ -79,36 +151,37 @@ public class Test08 {
     public static void main(String[] args) {
         // 典型输入，单调升序的数组的一个旋转
         int[] array1 = {3, 4, 5, 1, 2};
-        System.out.println(min(array1));
+        out.println(min(array1));
 
         // 有重复数字，并且重复的数字刚好的最小的数字
         int[] array2 = {3, 4, 5, 1, 1, 2};
-        System.out.println(min(array2));
+        out.println(min(array2));
 
         // 有重复数字，但重复的数字不是第一个数字和最后一个数字
         int[] array3 = {3, 4, 5, 1, 2, 2};
-        System.out.println(min(array3));
+        out.println(min(array3));
 
         // 有重复的数字，并且重复的数字刚好是第一个数字和最后一个数字
         int[] array4 = {1, 0, 1, 1, 1};
-        System.out.println(min(array4));
+        out.println(min(array4));
 
         // 单调升序数组，旋转0个元素，也就是单调升序数组本身
         int[] array5 = {1, 2, 3, 4, 5};
-        System.out.println(min(array5));
+        out.println(min(array5));
 
         // 数组中只有一个数字
         int[] array6 = {2};
-        System.out.println(min(array6));
+        out.println(min(array6));
 
         // 数组中数字都相同
         int[] array7 = {1, 1, 1, 1, 1, 1, 1};
-        System.out.println(min(array7));
-        System.out.println(min(array6));
+        out.println(min(array7));
+        out.println(min(array6));
 
         // 输入NULL
-        System.out.println(min(null));
+//        out.println(min(null));
 
-
+        int arr[]={1, 0, 1, 1, 1};
+        out.println(fun(arr));
     }
 }
