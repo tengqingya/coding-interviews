@@ -8,9 +8,28 @@ public class Test09 {
 
     /**
      * 写一个函数，输入n，求斐波那契（Fibonacci) 数列的第n项
+     * F(1)=1，F(2)=1, F(3)=2 ,F(n)=F(n-1)+F(n-2)（n>=4，n∈N*）
      * @param n Fibonacci数的项数
      * @return 第n项的结果
      */
+
+    //todo 用循环不用递归
+
+
+
+    public static long fb(int n){
+        if(n==1 || n==2 )return 1;
+        if(n==3) return 2;
+        return fb(n-1) + fb(n-2);
+    }
+
+
+
+
+
+
+
+
     public static long fibonacci(int n) {
 
         // 当输入非正整数的时候返回0
@@ -55,5 +74,6 @@ public class Test09 {
         System.out.println(fibonacci(5));
         System.out.println(fibonacci(6));
         System.out.println(fibonacci(7));
+        System.out.println(fb(7));
     }
 }
