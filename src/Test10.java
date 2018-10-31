@@ -13,6 +13,29 @@ public class Test10 {
      * @param n 待的数字
      * @return 数字中二进制表表的1的数目
      */
+
+
+
+    public static int funTest10(int n){
+        int a = 0;
+        while(n!= 1){
+            if(n%2 == 1)a++;
+            n=n/2;
+        }
+        return ++a;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
     public static int numberOfOne(int n) {
         // 记录数字中1的位数
         int result = 0;
@@ -67,5 +90,7 @@ public class Test10 {
         System.out.println(numberOfOne2(0B11111111_11111111_11111111_11111111)); // -1
         System.out.println(numberOfOne2(0B01111111_11111111_11111111_11111111)); // Integer.MAX_VALUE
         System.out.println(numberOfOne2(0B10000000_00000000_00000000_00000000)); // Integer.MIN_VALUE
+
+        System.out.println(funTest10(15)); // Integer.MIN_VALUE
     }
 }
