@@ -14,6 +14,44 @@ public class Test11 {
      * @param exponent 幂
      * @return 结果
      */
+
+
+
+
+
+
+
+    //todo https://blog.csdn.net/qq_33724710/article/details/51304313
+
+    public static double fun11(double base, int exponent){
+        double ret = 1;
+        for(int i=0;i<exponent;i++){
+            ret*=base;
+        }
+        return ret;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public static double power(double base, int exponent) {
         // 指数和底数不能同时为0
         if (base == 0 && exponent == 0) {
@@ -63,7 +101,7 @@ public class Test11 {
         }
 
         // 递归求一半的值
-        double result = powerWithUnsignedExponent(base, exponent >> 2);
+        double result = powerWithUnsignedExponent(base, exponent >> 1);
 
         // 求最终的值，如果是奇数就还要剩以一次底数
         result *= result;
@@ -77,15 +115,17 @@ public class Test11 {
 
     public static void main(String[] args) {
 
-        System.out.println(0.0000000000000000000000001111 == 0);
-        System.out.println(0.0000000000000000000000000000 == 0);
-
-        System.out.println(power(2, -4));
+//        System.out.println(0.0000000000000000000000001111 == 0);
+//        System.out.println(0.0000000000000000000000000000 == 0);
+//
+//        System.out.println(power(2, -4));
         System.out.println(power(2, 4));
-        System.out.println(power(2, 0));
-        System.out.println(power(0.00000000000000000000000000001, -1));
-        System.out.println(power(0.00000000000000000000000000001, 1));
-        System.out.println(power(0.00000000000000000000000000001, 0));
-        System.out.println(power(0.00000000000000000000000000000, 0));
+//        System.out.println(power(2, 0));
+//        System.out.println(power(0.00000000000000000000000000001, -1));
+//        System.out.println(power(0.00000000000000000000000000001, 1));
+//        System.out.println(power(0.00000000000000000000000000001, 0));
+//        System.out.println(power(0.00000000000000000000000000000, 0));
+
+        System.out.println(fun11(2, 4));
     }
 }
