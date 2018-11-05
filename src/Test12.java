@@ -1,3 +1,6 @@
+import static java.lang.System.in;
+import static java.lang.System.out;
+
 /**
  * Author: 王俊超
  * Date: 2015-04-23
@@ -11,6 +14,74 @@ public class Test12 {
      *
      * @param n 数字的最大位数
      */
+
+
+
+    public static void fun12(int n){
+        //@Deprecated F(n) = F(1) * F(n-1)  //字符串拼接，不是直接相加
+        int []num = new int[n];
+        //{1,2,3} 则打印 123,{0,0,1}则打印1
+        printDG(num,n,0);
+    }
+
+    /**
+     *
+     * @param number
+     * @param length
+     * @param index
+     */
+    private static void printDG( int[] number, int length, int index) {
+        //共性是数组的每位都是0到9循环，所以递归的最外层肯定是0到9的循环
+        //结束条件：对数组的每一位进行递归，当递归到最后一位的时候就结束了并且打印
+        if(index==length-1){
+            p(number);
+            return;
+        }
+
+        for(int i =0;i<=9;i++){
+            number[index] = i; //number[index] 和 number[index+1] 的区别？？？？
+            printDG(number,length,index+1); //往前移一位
+            //最里面的递归一定是一直在重复的
+        }
+    }
+
+    /**
+     * 打印数组,最前面的0去掉
+     * @param number
+     */
+    private static void p( int[] number ) {
+        for(int i=0;i<number.length;i++){
+            if(number[i]!=0)
+                out.print(number[i]);
+        }
+        out.println("");
+    }
+
+    private static void print12( StringBuffer sb ) {
+        //从末尾开始依次打印
+        int index =0;
+        for(int len = sb.length()-1;len>=0;len--){
+            //index表示本次打印几位
+            int num = sb.charAt(len) - '0';
+            //打印
+            if(index==0){
+                sb.setCharAt(0,'1');
+                print12_1(sb);
+                index++;
+            }else {
+                sb.setCharAt(index-1,'0');
+                sb.setCharAt(index++,'1');
+                print12_1(sb);
+            }
+        }
+    }
+
+    private static void print12_1(StringBuffer sb ) {
+        //1,10,100,1000依次打印
+
+    }
+
+
     public static void printOneToNthDigits(int n) {
         // 输入的数字不能为小于1
         if (n < 1) {
@@ -56,11 +127,11 @@ public class Test12 {
 
         // 从第一个非0值到开始输出到最后的元素。
         for (int i = index; i < arr.length; i++) {
-            System.out.print(arr[i]);
+            out.print(arr[i]);
         }
         // 条件成立说明数组中有非零元素，所以需要换行
         if (index < arr.length) {
-            System.out.println();
+            out.println();
         }
     }
 
@@ -123,9 +194,10 @@ public class Test12 {
 
 
     public static void main(String[] args) {
-        printOneToNthDigits2(2);
-        System.out.println();
-        printOneToNthDigits(2);
+//        printOneToNthDigits2(2);
+//        out.println();
+//        printOneToNthDigits(2);
+        fun12(4);
     }
 
 }
