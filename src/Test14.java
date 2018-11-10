@@ -1,3 +1,5 @@
+import static java.lang.System.out;
+
 /**
  * Author: 王俊超
  * Date: 2015-04-23
@@ -12,6 +14,54 @@ public class Test14 {
      *
      * @param arr 输入的数组
      */
+
+
+
+
+
+
+
+
+
+
+//从前往后找第一个偶数，从后往前找第一个奇数，交换
+    public static void fun14(int[] arr ){
+        int length = arr.length;
+        int start =0;
+        int end = length-1;
+        int flag =0;//标志是否两边都找到了
+        while( start<end ){
+            if(arr[start]%2==1){
+                start++;
+            }else {
+                flag++;
+            }
+            if(arr[end]%2==0){
+                end--;
+            }else {
+                flag++;
+            }
+            if(flag==2){
+                swap14(arr,start,end);
+                flag=0;
+            }
+        }
+        if (arr != null && arr.length > 0) {
+            for (int i : arr) {
+                out.print(i + " ");
+            }
+            out.println();
+        }
+    }
+
+    private static void swap14( int[] arr, int start, int end ) {
+        int temp;
+        temp = arr[start];
+        arr[start] = arr[end];
+        arr[end] =temp;
+    }
+
+
     public static void reorderOddEven(int[] arr) {
         // 对于输入的数组为空，或者长度小于2的只接返回
         if (arr == null || arr.length < 2) {
@@ -50,9 +100,9 @@ public class Test14 {
     public static void printArray(int[] arr) {
         if (arr != null && arr.length > 0) {
             for (int i : arr) {
-                System.out.print(i + " ");
+                out.print(i + " ");
             }
-            System.out.println();
+            out.println();
         }
     }
 
@@ -60,5 +110,6 @@ public class Test14 {
         int[] array = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
         reorderOddEven(array);
         printArray(array);
+        fun14(array);
     }
 }
