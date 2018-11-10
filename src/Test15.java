@@ -1,3 +1,5 @@
+import static java.lang.System.out;
+
 /**
  * Author: 王俊超
  * Date: 2015-04-23
@@ -19,6 +21,45 @@ public class Test15 {
      * @param k    倒数第k个结点
      * @return 倒数第k个结点
      */
+
+
+
+
+
+
+
+public static ListNode fun15(ListNode head,int k){
+    //先往前走k步
+    ListNode h = head;
+    for(int i =0;i<k-1;i++){
+        head=head.next;
+    }
+    while( head.next!=null ){
+        h =h.next;head=head.next;
+    }
+    return h;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public static ListNode findKthToTail(ListNode head, int k) {
 
         // 输入的链表不能为空，并且k大于0
@@ -83,10 +124,14 @@ public class Test15 {
         head.next.next.next.next.next.next.next.next = new ListNode();
         head.next.next.next.next.next.next.next.next.value = 9;
 
-        System.out.println(findKthToTail(head, 1).value); // 倒数第一个
-        System.out.println(findKthToTail(head, 5).value); // 中间的一个
-        System.out.println(findKthToTail(head, 9).value); // 倒数最后一个就是顺数第一个
+        out.println(findKthToTail(head, 1).value); // 倒数第一个
+        out.println(findKthToTail(head, 5).value); // 中间的一个
+        out.println(findKthToTail(head, 9).value); // 倒数最后一个就是顺数第一个
 
-        System.out.println(findKthToTail(head, 10));
+        out.println(findKthToTail(head, 10));
+
+        out.println(fun15(head,1).value);
+        out.println(fun15(head,5).value);
+        out.println(fun15(head,9).value);
     }
 }
