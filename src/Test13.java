@@ -23,6 +23,35 @@ public class Test13 {
      * @param toBeDeleted 待删除的结点
      * @return 删除后的头结点
      */
+
+
+
+
+//额···刚开始没理解111
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public static ListNode deleteNode(ListNode head, ListNode toBeDeleted) {
 
         // 如果输入参数有空值就返回表头结点
