@@ -1,3 +1,7 @@
+import sun.org.mozilla.javascript.internal.NativeWith;
+
+import static java.lang.System.out;
+
 /**
  * Author: 王俊超
  * Date: 2015-04-23
@@ -16,6 +20,54 @@ public class Test16 {
      * @param head 链表的头结点
      * @return 反转后的链表的头结点
      */
+
+
+
+
+
+
+
+
+
+public static ListNode fun16(ListNode head ){
+    out.println(head.toString());
+    ListNode p1 = head,p2=head.next,p3=p2.next;
+    //头变尾
+    p1.next=null;
+    while( p3.next!=null ){
+        //往后移动并逆向最前面的一个节点
+        p2.next = p1;
+        p1 = p2;
+        p2 = p3;
+        p3=p3.next;
+
+    }
+    //将最后面的节点逆向
+    p2.next = p1;
+    p3.next=p2;
+    head = p3;
+    return head;
+}
+
+    public static ListNode fun16_2( ListNode head ) {
+        out.println(head.toString());
+        ListNode newHead = new ListNode();//新的节点
+        ListNode p = head;
+        newHead.next = null;
+        while( p != null ) {
+            //头插
+            p = p.next;
+            head.next = newHead;
+            newHead = head;
+            head = p;
+        }
+        return newHead;
+    }
+
+
+
+
+
     public static ListNode reverseList(ListNode head) {
         // 创建一个临时结点，当作尾插法的逻辑头结点
         ListNode root = new ListNode();
@@ -88,10 +140,10 @@ public class Test16 {
      */
     public static void printList(ListNode head) {
         while (head != null) {
-            System.out.print(head.value + "->");
+            out.print(head.value + "->");
             head = head.next;
         }
-        System.out.println("null");
+        out.println("null");
     }
 
     public static void main(String[] args) {
@@ -122,11 +174,17 @@ public class Test16 {
         head.next.next.next.next.next.next.next.next = new ListNode();
         head.next.next.next.next.next.next.next.next.value = 9;
 
-        printList(head);
-        head = reverseList(head);
-        printList(head);
-        head = reverseList2(head);
-        printList(head);
+//        printList(head);
+        out.println(head.toString());
+//        reverseList(head);
+//        printList(head);
+//        head = reverseList2(head);
+//        printList(head);
+//
+//        printList(fun16(head));
+        fun16(head);
+        printList(fun16_2(head));
+//        printList(head);
 
     }
 }
