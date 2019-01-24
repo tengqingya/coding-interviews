@@ -1,3 +1,5 @@
+import static java.lang.System.out;
+
 /**
  * Author: 王俊超
  * Date: 2015-04-23
@@ -10,12 +12,63 @@ public class Test17 {
         ListNode next;
     }
 
+
+    /**
+     * 不使用额外节点
+     * @param head1
+     * @param head2
+     * @return
+     */
+    public static ListNode merge3(ListNode head1, ListNode head2) {
+        ListNode newHead = head1;
+        ListNode l1 = head1.next;
+        ListNode l2 = head2.next;
+        int value1=0;
+        int value2=0;
+        int value3=0;
+        int value4=0;
+        while( l1!=null){
+            value1 = head1.value;
+            value2 = l1.value;
+            value3 = head2.value;
+            value4 = l2.value;
+            if(value1<=value3 && value3<=value2){
+                head1.next = head2;
+                head2.next=l1;
+                head2 = l2;
+                l2=l2.next;
+                head1=l1;
+                l1=l1.next;
+            }else if(value1<=value3 ){
+                head1=l1;
+                l1=l1.next;
+            }else if(value4>value1){
+                head2.next=head1;
+                head2 = l2;
+                l2=l2.next;
+            }
+        }
+        if(value1<=value3){
+            head1.next = head2;
+        }
+        return newHead;
+    }
+
+
     /**
      * 输入两个递增排序的链表，合并这两个链表并使新链表中的结点仍然是按照递增排序的
      *
      * @param head1 第一个有序链表
      * @param head2 第二个有序链表
      * @return 合并后的有序链表头
+     */
+
+
+    /**
+     * 使用2个额外节点
+     * @param head1
+     * @param head2
+     * @return
      */
     public static ListNode merge(ListNode head1, ListNode head2) {
         // 如果第一个链表为空，返回第二个链表头结点
@@ -88,11 +141,13 @@ public class Test17 {
         ListNode tmp = head1;
         if (tmp.value < head2.value) {
             // 如果第一个链表的头结点小，就递归处理第一个链表的下一个结点和第二个链表的头结点
-            tmp.next = merge2(head1.next, head2);
+            head1.next = merge2(head1.next, head2);
         } else {
             // 如果第二个链表的头结点小，就递归处理第一个链表的头结点和第二个链表的头结点的下一个结点
             tmp = head2;
-            tmp.next = merge2(head1, head2.next);
+            head2.next = merge2(head1, head2.next);
+            out.println(tmp.next.value);
+            out.println(head2.next.value);
         }
 
         // 返回处理结果
@@ -106,10 +161,10 @@ public class Test17 {
      */
     public static void printList(ListNode head) {
         while (head != null) {
-            System.out.print(head.value + "->");
+            out.print(head.value + "->");
             head = head.next;
         }
-        System.out.println("null");
+        out.println("null");
     }
 
     public static void main(String[] args) {
