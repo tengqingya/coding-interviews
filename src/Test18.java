@@ -14,6 +14,55 @@ public class Test18 {
         BinaryTreeNode right;
     }
 
+
+    /**
+     * 双层递归写法
+     * @param root1
+     * @param root2
+     * @return
+     */
+    public static boolean fun18(BinaryTreeNode root1, BinaryTreeNode root2) {
+        if((root1==null && root2!=null) || (root1!=null&&root2==null) ){
+            return false;
+        }
+        if(root1==null){
+            return true;
+        }
+        boolean a =false;
+        if(root1.value == root2.value){
+            //拷贝
+            a=fun18_2(root1,root2);
+        }
+        if(a){
+            return true;
+        }
+        return fun18(root1.left, root2) || fun18(root1.right, root2);
+    }
+
+
+    public static boolean fun18_2(BinaryTreeNode root1, BinaryTreeNode root2) {
+        if((root1==null && root2!=null) || (root1!=null&&root2==null) ){
+            return false;
+        }
+        // 只要树B的根结点点为空就返回true
+        if (root2 == null) {
+            return true;
+        }
+
+        if(root1.value == root2.value){
+            return fun18_2(root1.left,root2.left) && fun18_2(root1.right,root2.right);
+        }
+        return false;
+    }
+
+
+
+
+
+
+
+
+
     /**
      * 输入两棵二叉树A和B，判断B是不是A的子结构。
      * 该方法是在A树中找到一个与B树的根节点相等的元素的结点，
@@ -24,6 +73,16 @@ public class Test18 {
      * @param root2 树B的根结点
      * @return true：树B是树A的子结构，false：树B是不树A的子结构
      */
+
+
+
+
+
+
+
+
+
+
     public static boolean hasSubtree(BinaryTreeNode root1, BinaryTreeNode root2) {
         // 只要两个对象是同一个就返回true
         // 【注意此处与书本上的不同，书本上的没有这一步】
@@ -113,11 +172,13 @@ public class Test18 {
         root2.right = new BinaryTreeNode();
         root2.right.value = 2;
 
-        System.out.println(hasSubtree(root1, root2));
-        System.out.println(hasSubtree(root2, root1));
-        System.out.println(hasSubtree(root1, root1.left));
-        System.out.println(hasSubtree(root1, null));
-        System.out.println(hasSubtree(null, root2));
-        System.out.println(hasSubtree(null, null));
+//        System.out.println(hasSubtree(root1, root2));
+//        System.out.println(fun18(root1, root2));
+//        System.out.println(hasSubtree(root2, root1));
+        System.out.println(fun18(root2, root1));
+//        System.out.println(hasSubtree(root1, root1.left));
+//        System.out.println(hasSubtree(root1, null));
+//        System.out.println(hasSubtree(null, root2));
+//        System.out.println(hasSubtree(null, null));
     }
 }
