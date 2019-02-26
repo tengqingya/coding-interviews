@@ -1,3 +1,5 @@
+import static java.lang.System.out;
+
 /**
  * Author: 王俊超
  * Date: 2015-04-23
@@ -14,11 +16,42 @@ public class Test19 {
         BinaryTreeNode right;
     }
 
+
+
+
+
+
+
+
+
+
     /**
      * 请完成一个函数，输入…个二叉树，该函数输出它的镜像
      *
      * @param node 二叉树的根结点
      */
+
+    public static void test19(BinaryTreeNode node) {
+        BinaryTreeNode temp =new BinaryTreeNode();
+        temp = node.left;
+        node.left = node.right;
+        node.right=temp;
+        if(node.left!=null)
+            test19(node.left);
+        if(node.right!=null)
+            test19(node.right);
+    }
+
+
+//https://www.cnblogs.com/zl1991/p/6952587.html
+
+
+
+
+
+
+
+
     public static void mirror(BinaryTreeNode node) {
         // 如果当前结点不为空则进行操作
         if (node != null) {
@@ -36,7 +69,7 @@ public class Test19 {
     public static void printTree(BinaryTreeNode node) {
         if (node != null) {
             printTree(node.left);
-            System.out.print(node.value + " ");
+            out.print(node.value + " ");
             printTree(node.right);
         }
     }
@@ -62,7 +95,7 @@ public class Test19 {
         root.right.right = new BinaryTreeNode();
         root.right.right.value = 11;
         printTree(root);
-        System.out.println();
+        out.println();
         mirror(root);
         printTree(root);
         //         1
@@ -84,10 +117,11 @@ public class Test19 {
         root2.left.left.left.value = 7;
         root2.left.left.left.left = new BinaryTreeNode();
         root2.left.left.left.left.value = 9;
-        System.out.println("\n");
+        out.println("\n");
         printTree(root2);
-        System.out.println();
+        out.println();
         mirror(root2);
+//        test19(root2);
         printTree(root2);
 
         // 0
@@ -109,10 +143,11 @@ public class Test19 {
         root3.right.right.right.value = 6;
         root3.right.right.right.right = new BinaryTreeNode();
         root3.right.right.right.right.value = 8;
-        System.out.println("\n");
+        out.println("\n");
         printTree(root3);
-        System.out.println();
+        out.println();
         mirror(root3);
+//        test19(root3);
         printTree(root3);
 
 
