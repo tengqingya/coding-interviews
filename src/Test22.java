@@ -18,6 +18,66 @@ public class Test22 {
      * @param pop  出栈序列
      * @return true：出栈序列是入栈序列的一个弹出顺序
      */
+
+
+    /**
+     * 1,2,3,4,5||5,4,3,2,1
+     * 1,2,3,4,5||4,5,3,2,1
+     * 1,2,3,4,5||2,1,3,5,4
+     * @param push
+     * @param pop
+     * @return
+     */
+    public static boolean test22(int[] push, int[] pop) {
+        Stack<Integer> stack = new Stack<>();
+        int popLength=0;
+        int pushLength=0;
+        while( pushLength<push.length){
+            if(!stack.isEmpty()&& stack.peek()==pop[popLength]){
+                stack.pop();
+                popLength++;
+            }
+            if(push[pushLength]!=pop[popLength]){
+                stack.push(push[pushLength++]);
+            }else {
+                pushLength++;
+                popLength++;
+            }
+        }
+        boolean flag=true;
+        while( !stack.isEmpty()){
+            if(pop[popLength++] == stack.pop()){
+            }else {
+                flag=false;
+                break;
+            }
+        }
+        return flag;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public static boolean isPopOrder(int[] push, int[] pop) {
         // 输入校验，参数不能为空，并且两个数组中必须有数字，并且两个数组中的数字个数相同
         // 否则返回false
@@ -146,8 +206,10 @@ public class Test22 {
 
         System.out.println("true: " + isPopOrder(push, pop1));
         System.out.println("true: " + isPopOrder(push, pop2));
+        System.out.println("true: test22" + test22(push, pop2));
         System.out.println("false: " + isPopOrder(push, pop3));
         System.out.println("false: " + isPopOrder(push, pop4));
+        System.out.println("false: test22" + test22(push, pop4));
 
         int[] push5 = {1};
         int[] pop5 = {2};
@@ -162,11 +224,17 @@ public class Test22 {
         // 测试方法2
         System.out.println();
         System.out.println("true: " + isPopOrder2(push, pop1));
+        System.out.println("true: test22 " + test22(push, pop1));
         System.out.println("true: " + isPopOrder2(push, pop2));
         System.out.println("false: " + isPopOrder2(push, pop3));
+        System.out.println("false: test22" + test22(push, pop3));
         System.out.println("false: " + isPopOrder2(push, pop4));
+        System.out.println("false: test22" + test22(push, pop4));
         System.out.println("false: " + isPopOrder2(push5, pop5));
+        System.out.println("false: test22" + test22(push5, pop5));
+        System.out.println("false: test22" + test22(push5, pop5));
         System.out.println("true: " + isPopOrder2(push6, pop6));
+        System.out.println("true: test22" + test22(push6, pop6));
         System.out.println("false: " + isPopOrder2(null, null));
     }
 }
