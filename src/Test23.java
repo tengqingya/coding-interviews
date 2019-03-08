@@ -1,5 +1,7 @@
 import java.util.*;
 
+import static java.lang.System.out;
+
 /**
  * Author: 王俊超
  * Date: 2015-04-24
@@ -16,6 +18,9 @@ public class Test23 {
         BinaryTreeNode right;
     }
 
+
+
+
     /**
      * 从上往下打印出二叉树的每个结点，向一层的结点按照从左往右的顺序打印。
      * 例如下的二叉树，
@@ -28,6 +33,34 @@ public class Test23 {
      *
      * @param root 树的结点
      */
+
+
+
+
+    public static void test23(BinaryTreeNode root) {
+        if(root==null)return;
+        Queue<BinaryTreeNode> queue = new LinkedList<>();
+        ( (LinkedList<BinaryTreeNode>)queue ).push(root);
+        while(!queue.isEmpty()){
+            BinaryTreeNode remove = queue.remove();
+            out.println(remove.value);
+            if(remove.left!=null){
+                ( (LinkedList<BinaryTreeNode>)queue ).push(remove.left);
+            }
+            if(remove.right!=null){
+                ( (LinkedList<BinaryTreeNode>)queue ).push(remove.right);
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
     public static void printFromToBottom(BinaryTreeNode root) {
 
         // 当结点非空时才进行操作
@@ -44,7 +77,7 @@ public class Test23 {
                 // 删除队首元素
                 curNode = list.remove();
                 // 输出队首元素的值
-                System.out.print(curNode.value + " ");
+                out.print(curNode.value + " ");
                 // 如果左子结点不为空，则左子结点入队
                 if (curNode.left != null) {
                     list.add(curNode.left);
@@ -99,8 +132,9 @@ public class Test23 {
         root2.left.left.left.value = 7;
         root2.left.left.left.left = new BinaryTreeNode();
         root2.left.left.left.left.value = 9;
-        System.out.println("\n");
+        out.println("\n");
         printFromToBottom(root2);
+        test23(root2);
 
         // 0
         //  \
@@ -121,17 +155,19 @@ public class Test23 {
         root3.right.right.right.value = 6;
         root3.right.right.right.right = new BinaryTreeNode();
         root3.right.right.right.right.value = 8;
-        System.out.println("\n");
+        out.println("\n");
         printFromToBottom(root3);
+        test23(root3);
 
         // 1
         BinaryTreeNode root4 = new BinaryTreeNode();
         root4.value = 1;
-        System.out.println("\n");
+        out.println("\n");
         printFromToBottom(root4);
+        test23(root4);
 
         // null
-        System.out.println("\n");
+        out.println("\n");
         printFromToBottom(null);
 
     }
