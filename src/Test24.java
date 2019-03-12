@@ -12,6 +12,45 @@ public class Test24 {
      * @param sequence 某二叉搜索树的后序遍历的结果
      * @return true：该数组是某二叉搜索树的后序遍历的结果。false：不是
      */
+
+
+
+
+    //由中序和后续能否得到一个二叉树
+    //1,2,4,5,3
+    //1,2,3,4,5
+    //5,4,3,2,1
+    //从前往后，找到第一个比最后一个大的数为止
+    //只有 后序遍历 结果，只能用数组的大小来判断
+
+    public static boolean test24(int[] sequence) {
+        int index=0;
+        for(int i=0;i<sequence.length;i++){
+            index = i;
+            if(sequence[i]>=sequence[sequence.length-1]){
+                break;
+            }
+        }
+        for(int i=index;i<sequence.length;i++){
+            if(sequence[i]<sequence[sequence.length-1]){
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
     public static boolean verifySequenceOfBST(int[] sequence) {
 
         // 输入的数组不能为空，并且有数据
@@ -87,6 +126,7 @@ public class Test24 {
         //      4  8  12  16
         int[] data = {4, 8, 6, 12, 16, 14, 10};
         System.out.println("true: " + verifySequenceOfBST(data));
+        System.out.println("true: test24" + test24(data));
 
         //           5
         //          / \
@@ -95,6 +135,7 @@ public class Test24 {
         //           6
         int[] data2 = {4, 6, 7, 5};
         System.out.println("true: " + verifySequenceOfBST(data2));
+        System.out.println("true: test24" + test24(data2));
 
         //               5
         //              /
@@ -107,6 +148,7 @@ public class Test24 {
         //       1
         int[] data3 = {1, 2, 3, 4, 5};
         System.out.println("true: " + verifySequenceOfBST(data3));
+        System.out.println("true: test24" + test24(data3));
 
         // 1
         //  \
@@ -119,15 +161,19 @@ public class Test24 {
         //         5
         int[] data4 = {5, 4, 3, 2, 1};
         System.out.println("true: " + verifySequenceOfBST(data4));
+        System.out.println("true: test24" + test24(data4));
 
         // 树中只有1个结点
         int[] data5 = {5};
         System.out.println("true: " + verifySequenceOfBST(data5));
+        System.out.println("true: test24" + test24(data5));
 
         int[] data6 = {7, 4, 6, 5};
         System.out.println("false: " + verifySequenceOfBST(data6));
+        System.out.println("false: test24" + test24(data6));
 
         int[] data7 = {4, 6, 12, 8, 16, 14, 10};
         System.out.println("false: " + verifySequenceOfBST(data7));
+        System.out.println("false: test24" + test24(data7));
     }
 }
