@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.System.out;
+
 /**
  * Author: 王俊超
  * Date: 2015-04-24
@@ -24,6 +26,38 @@ public class Test25 {
      * @param root        树的根结点
      * @param expectedSum 要求的路径和
      */
+
+
+
+
+    //一直往下遍历遍历到为空为止
+    public static void test25(BinaryTreeNode root, int expectedSum,List<Integer> arr) {
+        if(root!=null){
+            arr.add(root.value);
+            if(root.left!=null){
+                test25(root.left,expectedSum-root.value,arr);
+            }
+            if(root.right!=null){
+                test25(root.right,expectedSum-root.value,arr);
+            }
+            if(root.left==null && root.right==null){
+                if(root.value == expectedSum){
+                    //路径上的和相等
+                    out.println(arr);
+                }
+            }
+            //递归结束开始回退
+            arr.remove(arr.size()-1);
+        }else {
+
+        }
+    }
+
+
+
+
+
+
     public static void findPath(BinaryTreeNode root, int expectedSum) {
         // 创建一个链表，用于存放根结点到当前处理结点的所经过的结点
         List<Integer> list = new ArrayList<>();
@@ -59,7 +93,7 @@ public class Test25 {
             else if (curSum == expectedSum) {
                 // 当前结点是叶结点，则输出结果
                 if (root.left == null && root.right == null) {
-                    System.out.println(result);
+                    out.println(result);
                 }
             }
             // 移除当前结点
@@ -85,16 +119,19 @@ public class Test25 {
         root.right.value = 12;
 
         // 有两条路径上的结点和为22
-        System.out.println("findPath(root, 22);");
+        out.println("findPath(root, 22);");
         findPath(root, 22);
+        test25(root, 22,new ArrayList<Integer>());
 
         // 没有路径上的结点和为15
-        System.out.println("findPath(root, 15);");
+        out.println("findPath(root, 15);");
         findPath(root, 15);
+        test25(root, 15,new ArrayList<Integer>());
 
         // 有一条路径上的结点和为19
-        System.out.println("findPath(root, 19);");
+        out.println("findPath(root, 19);");
         findPath(root, 19);
+        test25(root, 19,new ArrayList<Integer>());
 
 
         //               5
@@ -118,12 +155,14 @@ public class Test25 {
         root2.left.left.left.left.value = 1;
 
         // 有一条路径上面的结点和为15
-        System.out.println("findPath(root2, 15);");
+        out.println("findPath(root2, 15)...;");
         findPath(root2, 15);
+        test25(root2, 15,new ArrayList<Integer>());
 
         // 没有路径上面的结点和为16
-        System.out.println("findPath(root2, 16);");
+        out.println("findPath(root2, 16)...;");
         findPath(root2, 16);
+        test25(root2, 16,new ArrayList<Integer>());
 
         // 1
         //  \
@@ -146,11 +185,11 @@ public class Test25 {
         root3.right.right.right.right.value = 5;
 
         // 有一条路径上面的结点和为15
-        System.out.println("findPath(root3, 15);");
+        out.println("findPath(root3, 15);");
         findPath(root3, 15);
 
         // 没有路径上面的结点和为16
-        System.out.println("findPath(root3, 16);");
+        out.println("findPath(root3, 16);");
         findPath(root3, 16);
 
         // 树中只有1个结点
@@ -158,15 +197,16 @@ public class Test25 {
 
         root4.value = 1;
         // 有一条路径上面的结点和为1
-        System.out.println("findPath(root4, 1);");
+        out.println("findPath(root4, 1);");
         findPath(root4, 1);
+        test25(root4, 1,new ArrayList<Integer>());
 
         // 没有路径上面的结点和为2
-        System.out.println("findPath(root4, 2);");
+        out.println("findPath(root4, 2);");
         findPath(root4, 2);
 
         // 树中没有结点
-        System.out.println("findPath(null, 0);");
+        out.println("findPath(null, 0);");
         findPath(null, 0);
     }
 }
