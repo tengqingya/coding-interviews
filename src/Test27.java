@@ -1,3 +1,5 @@
+import static java.lang.System.out;
+
 /**
  * Author: 王俊超
  * Date: 2015-04-25
@@ -21,6 +23,96 @@ public class Test27 {
      * @param root 二叉树的根结点
      * @return 双向链表的头结点
      */
+
+    public static BinaryTreeNode test_convert(BinaryTreeNode root){
+        root = new BinaryTreeNode();
+        return root;
+    }
+
+    public static BinaryTreeNode[] test_convert2(BinaryTreeNode[] root){
+        root[0] = new BinaryTreeNode();
+        return root;
+    }
+
+    public static BinaryTreeNode[] test_convert3(BinaryTreeNode[] root){
+        root = new BinaryTreeNode[1];
+        BinaryTreeNode b = new BinaryTreeNode();
+        b.value=3;
+        root[0]= b;
+        return root;
+    }
+
+
+
+
+
+    public static BinaryTreeNode test27(BinaryTreeNode root) {
+        BinaryTreeNode[] pre = new BinaryTreeNode[1];
+        test27_2(root, pre);
+//       test27_1(root, null);
+
+        // 找到双向链表的头结点
+        BinaryTreeNode head = root;
+        while (head != null && head.left != null) {
+            head = head.left;
+        }
+        return head;
+//        return test27_1(root,null);
+        //当前出栈
+        //要记录当前出栈 和 上一次出战的 节点
+
+    }
+
+    public static BinaryTreeNode test27_1(BinaryTreeNode root,BinaryTreeNode pre) {
+        if(root.left!=null ){
+            test27_1(root.left,pre);
+            //如果节点的右孩子为空
+        }
+        if(pre!=null){
+            pre.right = root;
+            root.left = pre;
+        }
+        pre = root;
+        if(root.right!=null){
+            test27_1(root.right,pre);
+        }
+        //已到达要出栈的节点
+        return root;
+    }
+
+
+    public static BinaryTreeNode test27_2(BinaryTreeNode root,BinaryTreeNode[] pre) {
+        if(root.left!=null ){
+            test27_2(root.left,pre);
+            //如果节点的右孩子为空
+        }
+        if(pre[0]!=null){
+            pre[0].right = root;
+            root.left = pre[0];
+        }
+        pre[0] = root;
+        if(root.right!=null){
+            test27_2(root.right,pre);
+        }
+        //已到达要出栈的节点
+        return root;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public static BinaryTreeNode convert(BinaryTreeNode root) {
 
         // 用于保存处理过程中的双向链表的尾结点
@@ -76,21 +168,33 @@ public class Test27 {
         test03();
         test04();
         test05();
+
+        BinaryTreeNode binaryTreeNode = new BinaryTreeNode();
+        binaryTreeNode.value = 1;
+        test_convert(binaryTreeNode);
+        out.println(binaryTreeNode.value);
+
+        BinaryTreeNode[] binaryTreeNodes = new BinaryTreeNode[1];
+        BinaryTreeNode b = new BinaryTreeNode();
+        b.value=2;
+        binaryTreeNodes[0] = b;
+        test_convert3(binaryTreeNodes);
+        out.println(binaryTreeNodes[0].value);
     }
 
     private static void printList(BinaryTreeNode head) {
         while (head != null) {
-            System.out.print(head.value + "->");
+            out.print(head.value + "->");
             head = head.right;
         }
 
-        System.out.println("null");
+        out.println("null");
     }
 
     private static void printTree(BinaryTreeNode root) {
         if (root != null) {
             printTree(root.left);
-            System.out.print(root.value + "->");
+            out.print(root.value + "->");
             printTree(root.right);
         }
     }
@@ -132,13 +236,13 @@ public class Test27 {
         node14.left = node12;
         node14.right = node16;
 
-        System.out.print("Before convert: ");
+        out.print("Before convert: ");
         printTree(node10);
-        System.out.println("null");
-        BinaryTreeNode head = convert(node10);
-        System.out.print("After convert : ");
+        out.println("null");
+        BinaryTreeNode head = test27(node10);
+        out.print("After convert : ");
         printList(head);
-        System.out.println();
+        out.println();
 
     }
 
@@ -172,13 +276,13 @@ public class Test27 {
         node3.left = node2;
         node2.left = node1;
 
-        System.out.print("Before convert: ");
+        out.print("Before convert: ");
         printTree(node5);
-        System.out.println("null");
-        BinaryTreeNode head = convert(node5);
-        System.out.print("After convert : ");
+        out.println("null");
+        BinaryTreeNode head = test27(node5);
+        out.print("After convert : ");
         printList(head);
-        System.out.println();
+        out.println();
     }
 
     // 1
@@ -211,13 +315,13 @@ public class Test27 {
         node3.right = node4;
         node4.right = node5;
 
-        System.out.print("Before convert: ");
+        out.print("Before convert: ");
         printTree(node1);
-        System.out.println("null");
-        BinaryTreeNode head = convert(node1);
-        System.out.print("After convert : ");
+        out.println("null");
+        BinaryTreeNode head = test27(node1);
+        out.print("After convert : ");
         printList(head);
-        System.out.println();
+        out.println();
     }
 
     // 只有一个结点
@@ -225,23 +329,23 @@ public class Test27 {
         BinaryTreeNode node1 = new BinaryTreeNode();
         node1.value = 1;
 
-        System.out.print("Before convert: ");
+        out.print("Before convert: ");
         printTree(node1);
-        System.out.println("null");
-        BinaryTreeNode head = convert(node1);
-        System.out.print("After convert : ");
+        out.println("null");
+        BinaryTreeNode head = test27(node1);
+        out.print("After convert : ");
         printList(head);
-        System.out.println();
+        out.println();
     }
 
     // 没有结点
     private static void test05() {
-        System.out.print("Before convert: ");
+        out.print("Before convert: ");
         printTree(null);
-        System.out.println("null");
+        out.println("null");
         BinaryTreeNode head = convert(null);
-        System.out.print("After convert : ");
+        out.print("After convert : ");
         printList(head);
-        System.out.println();
+        out.println();
     }
 }
