@@ -12,6 +12,73 @@ public class Test29 {
      * @param numbers 输入数组
      * @return 找到的数字
      */
+
+
+    /**
+     *  1 int MoreThanHalfNum(int* numbers, int length)
+     *  2 {
+     *  3     int result = numbers[0];
+     *  4     int time = 1 ;
+     *  5     for (int i = 1 ;i < length ; i++)
+     *  6     {
+     *  7         if (0 == time)
+     *  8         {
+     *  9             result = numbers[i] ;
+     * 10             time++ ;
+     * 11         }
+     * 12         else if (numbers[i] == result)
+     * 13         {
+     * 14             time++;
+     * 15         }
+     * 16         else
+     * 17         {
+     * 18             time-- ;
+     * 19         }
+     * 20     }
+     * 21     return result ;
+     * 22 }
+     * 23 int main()
+     * 24 {
+     * 25     int numbers[] = {1,3,3,2,3,2,3,3,2};
+     * 26     cout<<MoreThanHalfNum(numbers, 9);
+     * 27     getchar();
+     * 28     return 0;
+     * 29 }
+     * 复制代码
+     * @param numbers
+     * @return
+     */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public static int moreThanHalfNum(int[] numbers) {
 
         // 输入校验
