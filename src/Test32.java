@@ -11,6 +11,68 @@ public class Test32 {
      * @param n 最大的数字
      * @return 1-n中，各个数位1出现的次数
      */
+
+
+
+
+
+
+
+
+
+
+
+    public static int test32(int n){
+        int a =0;
+        for(int i=0;i<=n;i++){
+            a+=test32_1(i);
+        }
+        return a;
+    }
+
+    public static int test32_1(int i ){
+        int a = 0;
+        int b = 0;
+        int c =0;
+        while( true){
+            a= i/10;
+            b=i%10;
+            if(b==1)
+                c++;
+            if(a == 0){
+                break;
+            }else {
+                i = a;
+            }
+        }
+        return c;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public static int numberOf1Between1AndN(int n) {
         if (n <= 0) {
             return 0;
@@ -110,5 +172,8 @@ public class Test32 {
         System.out.println(numberOf1Between1AndN(10000)); // 4001
         System.out.println(numberOf1Between1AndN(21345)); // 18821
         System.out.println(numberOf1Between1AndN(0)); // 0
+
+        System.out.println(test32(10000));
+        System.out.println(test32(21345));
     }
 }

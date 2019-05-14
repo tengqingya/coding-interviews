@@ -12,6 +12,25 @@ public class Test31 {
      * @param arr 输入数组
      * @return 最大的连续子数组和
      */
+
+
+
+
+
+
+
+    //有正数也有负数,说明最大值一点大于0，如果小于0，则可以重新初始化
+
+
+
+
+
+
+
+
+
+
+
     public static int findGreatestSumOfSubArray(int[] arr) {
         // 参数校验
         if (arr == null || arr.length < 1) {
@@ -44,12 +63,12 @@ public class Test31 {
     }
 
     public static void main(String[] args) {
-        int[] data = {1, -2, 3, 10, -4, 7, 2, -5};
-        int[] data2 = {-2, -8, -1, -5, -9};
-        int[] data3 = {2, 8, 1, 5, 9};
+//        int[] data = {1, -2, 3, 10, -4, 7, 2, -5};
+//        int[] data2 = {-2, -8, -1, -5, -9};
+        int[] data3 = {-3,4,1,-6};
 
-        System.out.println(findGreatestSumOfSubArray(data));
-        System.out.println(findGreatestSumOfSubArray(data2));
+//        System.out.println(findGreatestSumOfSubArray(data));
+//        System.out.println(findGreatestSumOfSubArray(data2));
         System.out.println(findGreatestSumOfSubArray(data3));
     }
 }

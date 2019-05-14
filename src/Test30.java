@@ -12,9 +12,29 @@ import java.util.List;
 public class Test30 {
     /**
      * 大顶堆
-     *
+     * 题目： 输入n个整数，找出其中最小的k个数。
      * @param <T> 参数化类型
      */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     private final static class MaxHeap<T extends Comparable<T>> {
         // 堆中元素存放的集合
         private List<T> items;
