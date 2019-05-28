@@ -6,6 +6,7 @@
  */
 public class Test36 {
 
+    //题目是什么？？？？？？？？？？？？
     public static int inversePairs(int[] data) {
         if (data == null || data.length < 1) {
             throw new IllegalArgumentException("Array arg should contain at least a value");

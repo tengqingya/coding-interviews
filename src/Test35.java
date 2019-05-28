@@ -24,6 +24,8 @@ public class Test35 {
             }
         }
 
+        //没啥意思···有点简单
+
         Set<Map.Entry<Character, Integer>> entrySet = map.entrySet();
         // 记录只出现一次的字符的索引
         int idx = Integer.MAX_VALUE;

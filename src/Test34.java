@@ -50,6 +50,10 @@ public class Test34 {
         return num;
     }
 
+
+
+    //不理解
+
     /**
      * 找第index个丑数，【第二种方法】
      *
